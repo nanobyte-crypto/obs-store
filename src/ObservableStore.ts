@@ -1,10 +1,9 @@
-import SafeEventEmitter from '@metamask/safe-event-emitter';
+//import SafeEventEmitter from '@metamask/safe-event-emitter';
 
-export class ObservableStore<T> extends SafeEventEmitter {
+export class ObservableStore<T> {
   private _state: T;
 
   constructor(initState: T) {
-    super();
     if (initState) {
       this._state = initState;
     } else {
@@ -21,7 +20,7 @@ export class ObservableStore<T> extends SafeEventEmitter {
   // wrapper around internal putState
   putState(newState: T): void {
     this._putState(newState);
-    this.emit('update', newState);
+    //this.emit('update', newState);
   }
 
   updateState(partialState: Partial<T>): void {
@@ -37,12 +36,12 @@ export class ObservableStore<T> extends SafeEventEmitter {
 
   // subscribe to changes
   subscribe(handler: (state: T) => void): void {
-    this.on('update', handler);
+    // this.on('update', handler);
   }
 
   // unsubscribe to changes
   unsubscribe(handler: (state: T) => void): void {
-    this.removeListener('update', handler);
+    //this.removeListener('update', handler);
   }
 
   //
